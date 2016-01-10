@@ -1,0 +1,32 @@
+services:
+    restapibundle.util.dont_pluralize_inflector:
+        class: RestApiBundle\Util\DontPluralizeInflector
+
+    restapibundle.repository.item_repository:
+        class: RestApiBundle\Repository\ItemRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - RestApiBundle\Entity\Item
+
+    restapibundle.repository.cart_repository:
+        class: RestApiBundle\Repository\ItemRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments:
+            - RestApiBundle\Entity\Cart
+
+    restapibundle.model.items:
+        class: RestApiBundle\Model\Items
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
+    restapibundle.model.carts:
+        class: RestApiBundle\Model\Carts
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
+    restapibundle.exceptlistener:
+        class: RestApiBundle\Util\ExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception}

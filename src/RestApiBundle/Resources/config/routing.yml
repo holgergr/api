@@ -1,0 +1,9 @@
+items:
+    type:     rest
+    resource: RestApiBundle\Controller\ItemsController
+    prefix:   /items
+
+card:
+    type:     rest
+    resource: RestApiBundle\Controller\CartController
+    prefix:   /cart
